@@ -63,7 +63,22 @@
 
     2. 높은 상태 관리 복잡도
         - state, component life cycle 등의 개념이 있지만 그리 어렵지 않다.
-    
+
+6. 리액트 설치
+- 터미널에 npx create-react-app 폴더명
+- 오류 발생 시 조치사항
+    - npm 버전이 최신인지 확인 `npm -v`
+    - npm 삭제 후 재설치
+        ```
+        npm uninstall -g create-react-app
+        npm install -g create-react-app
+        ```
+    - 이래도 안돼?
+        ```
+        npm cache clean --force
+        npm install
+        ```
+
 ## 3월 13일 강의
 
 ### HTML
