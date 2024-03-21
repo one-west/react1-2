@@ -68,12 +68,13 @@
 - 터미널에 npx create-react-app 폴더명
 - 오류 발생 시 조치사항
     - npm 버전이 최신인지 확인 `npm -v`
+    - npm 최신버전 설치 후 실행 `npm install -g npm@latest`
     - npm 삭제 후 재설치
         ```
         npm uninstall -g create-react-app
         npm install -g create-react-app
         ```
-    - 이래도 안돼?
+    - npm 캐시 삭제 후 실행
         ```
         npm cache clean --force
         npm install
