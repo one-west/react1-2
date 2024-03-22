@@ -35,7 +35,7 @@
         출처 : https://velog.io/@dongjun187/React-Virtual-DOM-%EA%B8%B0%EC%B4%88-%EB%8F%99%EC%9E%91-%EC%9B%90%EB%A6%AC
         
         - 브라우저의 동작 원리 : Gecko와 유사하다
-        ![웹킷 동작 과정](https://d2.naver.com/content/images/2015/06/helloworld-59361-3.png)
+        ![웹킷 동작 과정](https://d2.naver.com/content/images/2015/06/helloworld-59361-3.png)  
         출처 : https://d2.naver.com/helloworld/59361
 
     2. 컴포넌트 기반 구조
