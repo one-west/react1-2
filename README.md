@@ -60,7 +60,7 @@
     <div id="root"></div>
     ReactDOM.render(element, document.getElementById('root'));
     ```
-    이때 render(*)함수를 사용
+    이때 render()함수를 사용
 
 - 렌더링된 엘리먼트 업데이트하기
     - 다음 코드는 tick() 함수를 정의
