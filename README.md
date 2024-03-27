@@ -1,5 +1,33 @@
 # 정한서 201930129
 
+## 3월 27일 강의
+
+### JSX
+- JSX란 Javascript Syntax eXtension 즉 자바스크립트를 확장한 문법이다. 
+
+1. JSX의 역할
+    - JSX는 내부적으로 XML/HTML 코드를 자바스크립트로 변환
+    - React가 createElement함수를 사용하여 자동으로 스크립트로 변환해 줌
+    - JS로 작업할 경우 직접 createElement함수를 사용해야한다.
+    - 결국 JSX는 가독성을 높여주는 역할을 한다.
+
+2. JSX의 장점
+    - 코드가 간결하다.
+    - 가독성이 좋아 유지보수가 용이하다.
+    - Injection Attact 해킹방법을 방어함으로써 보안에 강하다.
+
+3. JSX 사용법
+    - 모든 자바스크립트 문법을 지원한다.
+    - 자바스크립트 문법에 XML과 HTML을 섞어서 사용한다.
+    - HTML이나 XML에 자바스크립트 코드를 사용하고 싶으면 {}괄호를 사용한다.
+    - 태그의 속성값을 넣고 싶은 때는 다음과 같이 한다.
+    ```jsx
+    // 큰따옴표 사이에 문자열을 넣거나
+    const element = <div tabIndex="0"></div>;
+    // 중괄호 사이에 자바스크립트 코드를 넣으면 됨
+    const element = <img src={user.avatarlr}></img>;
+    ```
+
 ## 3월 20일 강의
 
 ### React
