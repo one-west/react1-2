@@ -1,5 +1,30 @@
 # 정한서 201930129
 
+## 4월 17일 강의
+
+### 훅이란 무엇인가?
+- 클래스형 컴포넌트
+
+- 훅의 이름은 모두 use로 시작해야함 
+
+### useState
+- useState는 함수형 컴포넌트에서 state를 사용하기 위한 Hook이다.
+
+- useState() 함수의 사용법
+
+### useEffect
+- useState와 함께 가장 많이 사용하는 Hook이다.
+
+- 클래스 컴포넌트의 생명주기 함수와 같은 기능을 하나로 통합한 기능을 제공
+
+- 부작용의 부를 不로 생각했기 때문이다.
+
+- sideEffect는 렌더링 외에 실핼해야 하는 부수적인 코드를 말한다.
+
+4. 
+
+5. 
+
 ## 4월 3일 강의
 
 ### Props
@@ -151,9 +176,13 @@
     -> App 이라는 Component 는 Welcome 이라는 Component 를 3개 포함하고 있는 Component 다.
    
 8. 컴포넌트 추출
+    
     - Component 추출을 사용하게 되면 Component 의 재사용성이 올라간다.
+    
     - Component 가 작아질 수록 기능이 명확해지고, prop 도 단순해 지기 때문에, 다른 곳에서 사용하기 좋아진다.
+    
     - 재사용성이 높아지면서 개발 속도도 올라간다.
+    
     - 아래 코드는 댓글을 표현하기 위한 Component 이다.
 
         ```jsx
@@ -245,14 +274,20 @@
 
 1. state란?
     - state는 리액트 컴포넌트의 상태를 의미
+    
     - 상태의 의미는 정상인지 비정상인지가 아니라 컴포넌트의 데이터를 의미
+    
     - 컴포넌트의 변경 가능한 데이터를 의미
+    
     - state가 변하면 다시 렌더링이 되기 때문에 렌더링과 관련된 값만 state에 포함시켜야 함
 
 2. state의 특징
     - 리액트만의 특별한 형태가 아닌 단지 JS객체일 뿐이다.
+
     - state는 변경은 가능하다고 했지만 직접 수정해서는 안됨
+
     - 불가능 하다고 생각하는 것이 좋다
+
     - state를 변경하고자 할 때는 setState() 함수를 사용함.
 
 ### 컴포넌트vs인스턴스vs엘리먼트
@@ -264,11 +299,17 @@
 
 ### 생명주기(Lifecycle)에 대해 알아보기
 - 생명주기는 컴포넌트의 생성 시점, 사용 시점, 종료 시점을 나타냄
+
 - constructor가 실행되면서 컴포넌트가 생성된다.
+
 - 생성 직후 compomentDidMount() 함수가 호출
+
 - 컴포넌트가 소멸하기 전까지 여러 번 랜더링 한다.
+
 - 렌더링은 props, setState(), forceUpdate()에 의해 상태가 변경되면 이루어짐
+
 - 렌더링이 끝나면 compomentDidUpdate()가 호출
+
 - 마지막으로 컴포넌트가 언마운트 되면 compomentWillUnmount()함수 가 호출됨
 
 ![마운팅,업데이팅,언마운팅1.jpg](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FzNVQp%2FbtsDfPeNMg9%2FhkXlv1oQnXVHlDZnkJ47TK%2Fimg.png)
