@@ -91,7 +91,7 @@
     }
     ```
 ### useMemo
-- useMemo() 훅은 memoized value를 리턴하는 훅입니다.
+- useMemo() 훅은 memoized value를 리턴하는 훅이다.
 
 - useMemo는 의존성이 변경되었을 때에만 메모이제이션된 값만 다시 계산한다.
 
