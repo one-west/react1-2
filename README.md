@@ -104,7 +104,14 @@
 - 배열이 없는 경우 매 렌더링 때마다 새 값을 계산하게 될 것이다.
 
     ```jsx
-    const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+    import { useMemo } from 'react';
+    
+	// useMemo(calculateValue, dependencies) 형태
+    
+	function TodoList({ todos, tab, theme }) {
+  		const visibleTodos = useMemo(() => filterTodos(todos, tab), [todos, tab]);
+  	// ...
+	}
     ```
 
 > ※ 메모이제이션(memoization): 컴퓨터 프로그램이 동일한 계산을 반복해야 할 때, 이전에 계산한 값을 메모리에 저장함으로써 동일한 계산의 반복 수행을 제거하여 프로그램 실행 속도를 빠르게 하는 기술이다.
