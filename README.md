@@ -109,7 +109,7 @@
 	// useMemo(calculateValue, dependencies) 형태
     
 	function TodoList({ todos, tab, theme }) {
-  		const visibleTodos = useMemo(() => filterTodos(todos, tab), [todos, tab]);
+        const visibleTodos = useMemo(() => filterTodos(todos, tab), [todos, tab]);
   	// ...
 	}
     ```
