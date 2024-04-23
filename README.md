@@ -128,13 +128,18 @@
 - useCallback(fn, deps)은 useMemo(() => fn, deps)와 같습니다.
 
     ```jsx
-    const memoizedCallback = useCallback(
-        () => {
-            doSomething(a, b);
-        },
-        [a, b],
-    );
+    import { useCallback } from 'react';
+
+	export default function ProductPage({ productId, referrer, theme }) {
+		const handleSubmit = useCallback((orderDetails) => {
+			post('/product/' + productId + '/buy', {
+      			referrer,
+      			orderDetails,
+    		});
+  		}, [productId, referrer]);
+    // ...
     ```
+    
 ### useRef
 - useRef() 훅은 레퍼런스를 사용하기 위한 훅이다.
 
