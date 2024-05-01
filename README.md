@@ -1,5 +1,119 @@
 # 정한서 201930129
 
+## 05월 1일 강의
+
+### Hook의 규칙
+
+- [훅의 두가지 규칙]
+    - 무조건 최상위 레벨에서만 호출해야 해야함.
+    - 따라서 반복문이나 조건문 또는 중첩된 함수들 안에서 Hook을 호출하면 안됨.
+    - 이 규칙에 따라서 훅은 컴포넌트가 렌더링 될 때마다 같은 순서로 호출되어야 함
+    
+    ```jsx
+    // 잘못된 코드 예시
+    function MyComponent(props) {
+        const [name, setName] = useState('Hanseo');
+
+        if (name !== '') {
+            useEffect(() => {
+                ...
+            });
+        }
+        ...
+    }
+    ```
+
+    - 함수형 컴포넌트에서만 Hook을 호출해야함.
+    - 따라서 일반 자바스크립트 함수에서 Hook을 호출하면 안됨.
+    - Hook은 함수형 컴포넌트 또는 직접 만든 커스텀 Hook에서만 호출할 수 있다.
+
+### 나만의 Hook 만들기
+
+- 필요하다면 직접 Hook을 만들어 쓸 수도 있다. 이것을 커스텀 Hook이라고 한다.
+
+```jsx
+import { useEffect, useState } from 'react'
+
+export default function UseStatus(props) {
+  const [isOnline, setIsOnline] = useState(null)
+  useEffect(() => {
+    function handleStatusChange(status) {
+      setIsOnline(status.isOnline)
+    }
+    ServerAPI.subscribeUserStatus(props.user.id, handleStatusChange)
+    return () => {
+      ServerAPI.subscribeUserStatus(props.user.id, handleStatusChange)
+    }
+  })
+  if (isOnline === null) {
+    return '대기중...'
+  }
+  return isOnline ? '온라인' : '오프라인'
+}
+```
+
+### 훅을 사용한 컴포넌트 개발
+
+1. useCounter() 훅 만들기
+
+    ```jsx
+    import { useState } from "react";
+
+    export default function useCounter(initialValue) {
+        const [count, setCount] = useState(initialValue)
+
+        const increaseCount = () => setCount((count) => count + 1)
+        const decreaseCount = () => setCount((count) => Math.max(count - 1, 0))
+
+        return [count, increaseCount, decreaseCount]
+    }
+    ```
+
+2. Accommodate 함수 만들기
+
+    ```jsx
+    import React, { useEffect, useState } from "react";
+    import useCounter from "./useCounter";
+
+    const MAX_CAPACITY = 10;
+
+    export default function Accommodate(props) {
+        const [isFull, setIsFull] = useState(false)
+        const [count, increaseCount, decreaseCount] = useCounter(0)
+
+        useEffect(() => {
+            console.log("=========");
+            console.log("useEffect() is called.");
+            console.log(`isFull: ${isFull}`);
+        })
+
+        useEffect(() => {
+            setIsFull(count >= MAX_CAPACITY);
+            console.log(`Current count value: ${count}`);
+        }, [count])
+
+        return (
+          <div>
+            <p>{`총 ${count} 수용했습니다.`}</p>
+            <button onClick={increaseCount} disabled={isFull}>입장</button>
+            <button onClick={decreaseCount}>퇴장</button>
+
+                  {isFull && <p style={{ color: 'red' }}>정원이 가득 찼습니다.</p>}
+         </div>
+        )
+    }
+    ```
+
+### 이벤트 처리하기
+- DOM에서 클릭 이벤트를 처리하는 예제코드
+- React에서 클릭 이벤트를 처리하는 예제코드
+
+- 둘의 차이점은
+    - 이벤트 이름이 onclick에서 onClick을 변경(Camel case)
+    - 전달하려는 함수는 문자열에서 함수 그대로 전달
+
+- 이벤트가 발생했을 때 해장 이벤트를 처리하는 함수를 '이벤트 핸들러'라고 함 또는 이벤트가 발생하는 것을 계속 듣고 있다는 의미로 '이벤트 리스너'라고도 함
+
 ## 4월 17일 강의
 
 ### Hook이란 무엇인가?
