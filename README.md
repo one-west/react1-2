@@ -1,8 +1,97 @@
 # 정한서 201930129
 
-## 05월 8일 강의
+## 5월 8일 강의
 
-## 05월 1일 강의
+### Arguments
+
+- 함수를 정의할 때는 파라미터() 혹은 매개변수, 함수를 사용할 때는 아귀먼트() 혹은 인수라고 부른다.
+
+- 이벤트 핸들러에 매개변수를 전달해야 하는 경우도 많음.
+
+    ```jsx
+    <button onClick={(e) => this.deleteItem(id, e)}>삭제하기</button>
+    ```
+- (실습) 클릭 이벤트 처리하기
+    ```jsx
+    import { useState } from "react";
+
+    export default function Toggle() {
+        const [isToggleOn, setIsToggleOn] = useState(false)
+
+        const handClick = () => {
+            setIsToggleOn((isToggleOn) => !isToggleOn)
+        }
+  
+        return (
+            <>
+                <p>결과 : {isToggleOn ? '켜짐' : '꺼짐'}</p>
+                <button onClick={handClick}>버튼</button>
+            </>
+        )
+    }
+    ```
+
+### 조건부 렌더링이란?
+
+
+### 엘리먼트 변수
+
+- 렌더링해야 될 컴포넌트를 변수처럼 사용하는 방법이 엘리먼트 변수이다.
+
+    ```jsx
+      // 엘리먼트 변수
+    let button;
+    if (isLoggedIn) {
+        button = <LogoutButton onClick={handleLogoutClick} />
+    } else{
+        button = <LoginButton onClick={handleLoginClick} />
+    }
+
+    return (
+        <>
+            <Greeting isLoggedIn={isLoggedIn} />
+            {button} {/* 엘리먼트 변수 호출 */}
+        </>
+    )
+    ```
+
+### 인라인 조건
+
+- 필요한 곳에 조건문을 직접 넣어 사용하는 방법이다.
+
+1. 인라인 if
+
+    - if문을 직접 사용하지 않고, 동일한 효과를 내기 위해 &&논리 연산자를 사용한다.
+
+    - &&는 and연산자로 모든 조건이 참일때만 참이 된다.
+
+    - 첫번째 조건이 거짓이면 두번째 조건은 판단할 필요없음. (단락평가, 단축평가)
+
+        ```jsx
+        { count && <h1>현재 카운트 : {count}</h1> }
+        ```
+2. 인라인 if-else
+
+    - 삼항 연산자를 사용함.
+    
+    - 문자열이나 엘리먼트를 넣어서 사용할 수도 있음.
+
+### 컴포넌트 렌더링 막기
+
+- 컴포넌트 렌더링하고 싶지 않은 때에는 null을 리턴합니다.
+
+    ```jsx
+    function WarningBanner(props) {
+        if(!props.warning){
+            return null;
+        }
+
+        return 
+    }
+    ```
+
+
+## 5월 1일 강의
 
 ### Hook의 규칙
 
