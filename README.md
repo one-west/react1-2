@@ -130,7 +130,41 @@
 
 ### 조건부 렌더링이란?
 
-    (작성해야함)
+- 컴포넌트는 서로 다른 조건에 따라 다른 것을 보여줘야 하는 경우가 자주 발생한다.
+
+- React에서는 if 문, &&, ? : 연산자 같은 JavaScript 문법을 사용해 조건부로 JSX를 렌더링할 수 있음.
+
+- 아래는 상품의 포장 여부를 표시하는 여러 개의 Item을 렌더링하는 PackingList 컴포넌트
+```jsx
+function Item({ name, isPacked }) {
+  return <li className="item">{name}</li>;
+}
+
+export default function PackingList() {
+  return (
+    <section>
+      <h1>Sally Ride's Packing List</h1>
+      <ul>
+        <Item isPacked={true} name="Space suit" />
+        <Item isPacked={true} name="Helmet with a golden leaf" />
+        <Item isPacked={false} name="Photo of Tam" />
+      </ul>
+    </section>
+  );
+}
+```
+
+- 일부 Item 컴포넌트의 isPacked prop이 false가 아닌 true로 설정되어 있다.
+- isPacked={true}인 경우, 패킹된 아이템에 체크 표시(✔)를 추가해보았다.
+
+```jsx
+function Item({ name, isPacked }) {
+  if (isPacked) {
+    return <li className="item">{name} ✔</li>;
+  }
+  return <li className="item">{name}</li>;
+}
+```
 
 ### 엘리먼트 변수
 
