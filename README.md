@@ -46,6 +46,12 @@
 
 2. 여러개의 컴포넌트 렌더링하기
 
+    - 엘리먼트 모음을 만들고 중괄호 {}를 이용하여 JSX에 포함할 수 있다.
+
+    - 아래의 JavaScript map() 함수를 사용하여 numbers 배열을 반복 실행하였다.
+    -
+    - 각 항목에 대해 <li> 엘리먼트를 반환하고 엘리먼트 배열의 결과를 listItems에 저장하였다.
+
    ```jsx
    export default function NumberList() {
      const numbers = [1, 2, 3, 4, 5];
@@ -55,11 +61,25 @@
    }
    ```
 
-3. 기본 리스트 컴포넌트
+4. 기본 리스트 컴포넌트
 
-   - (작성 필요)
+    - 일반적으로 컴포넌트 안에서 리스트를 렌더링합니다.
 
-4. 리스트의 키에 대해 알아보기
+    - 이전 예시를 numbers 배열을 받아서 순서 없는 엘리먼트 리스트를 출력하는 컴포넌트로 리팩토링할 수 있습니다.
+
+    ```jsx
+        
+    export default function NumberList() {
+        const numbers = [1, 2, 3, 4, 5];
+        const listItems = numbers.map((number) => <li>{number}</li>);
+
+        return (
+            <ul>{listItems}</ul>
+        );
+    }
+    ```
+
+6. 리스트의 키에 대해 알아보기
 
    - 리스트에서는 키는 "리스트에서 아이템을 구별하기 위한 고유한 문자열"
 
@@ -67,7 +87,7 @@
 
    - 키는 같은 리스트에 있는 엘리먼트 사이에서만 고유한 값이면 된다.
 
-5. 출석부 출력
+7. 출석부 출력
 
    ```jsx
    export default function NumberList() {
