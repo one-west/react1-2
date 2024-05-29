@@ -1,5 +1,74 @@
 # 정한서 201930129
 
+## 5월 29일 강의
+
+### ~ 22일 강의의 연장선
+
+1. select 태그
+
+   ```jsx
+   <select>
+     <option value="apple">사과</option>
+     <option value="pear">배</option>
+     <option value="banana">바나나</option>
+   </select>
+   ```
+
+2. File input 태그
+
+   - File input 태그는 그 값이 읽기 전용이기 때문에 리액트에서는 비제어 컴포넌트가 된다.  
+     `<input type="file" />`
+
+3. 여러 개의 입력 다루기
+
+   ```jsx
+   import { useState } from "react";
+
+   export default function SignUp() {
+     const [name, setName] = useState();
+     const [gender, setGender] = useState("남자");
+
+     const handleChangeName = (e) => {
+       setName(e.target.value);
+     };
+
+     const handleChangeGender = (e) => {
+       setGender(e.target.value);
+     };
+
+     const handleSubmit = (e) => {
+       alert(`이름: ${name} / ${gender}`);
+       e.preventDefault();
+     };
+
+     return (
+       <form onSubmit={handleSubmit}>
+         <label>
+           이름 :{" "}
+           <input
+             type="text" value={name} onChange={handleChangeName}
+             placeholder="이름을 입력해 주세요."
+           />
+         </label>
+         <label>
+           성별 :
+           <select value={gender} onChange={handleChangeGender}>
+             <option value="남자">남</option>
+             <option value="여자">여</option>
+           </select>
+         </label>
+         <button type="submit">제출</button>
+       </form>
+     );
+   }
+   ```
+
+4. input null value
+
+   - 제어 컴포넌트에 value prop을 정해진 값으로 넣으면 코드를 수정하지 않는 한 입력값을 바꿀 수 없습니다.
+
+   - 만약 value prop은 넣되 자유롭게 입력할 수 있게 만들고 싶다면 값이 undefined 또는 null을 넣으면 된다.
+
 ## 5월 22일 강의
 
 ### 폼이란 무엇인가?
@@ -52,11 +121,11 @@
 
 2. 여러개의 컴포넌트 렌더링하기
 
-    - 엘리먼트 모음을 만들고 중괄호 {}를 이용하여 JSX에 포함할 수 있다.
+   - 엘리먼트 모음을 만들고 중괄호 {}를 이용하여 JSX에 포함할 수 있다.
 
-    - 아래의 JavaScript map() 함수를 사용하여 numbers 배열을 반복 실행하였다.
+   - 아래의 JavaScript map() 함수를 사용하여 numbers 배열을 반복 실행하였다.
 
-    - 각 항목에 대해 \<li> 엘리먼트를 반환하고 엘리먼트 배열의 결과를 listItems에 저장하였다.
+   - 각 항목에 대해 \<li> 엘리먼트를 반환하고 엘리먼트 배열의 결과를 listItems에 저장하였다.
 
    ```jsx
    export default function NumberList() {
@@ -69,29 +138,26 @@
 
 3. 기본 리스트 컴포넌트
 
-    - 일반적으로 컴포넌트 안에서 리스트를 렌더링합니다.
+   - 일반적으로 컴포넌트 안에서 리스트를 렌더링합니다.
 
-    - 이전 예시를 numbers 배열을 받아서 순서 없는 엘리먼트 리스트를 출력하는 컴포넌트로 리팩토링할 수 있습니다.
+   - 이전 예시를 numbers 배열을 받아서 순서 없는 엘리먼트 리스트를 출력하는 컴포넌트로 리팩토링할 수 있습니다.
 
-    ```jsx
-        
-    export default function NumberList() {
-        const numbers = [1, 2, 3, 4, 5];
-        const listItems = numbers.map((number) => <li>{number}</li>);
+   ```jsx
+   export default function NumberList() {
+     const numbers = [1, 2, 3, 4, 5];
+     const listItems = numbers.map((number) => <li>{number}</li>);
 
-        return (
-            <ul>{listItems}</ul>
-        );
-    }
-    ```
+     return <ul>{listItems}</ul>;
+   }
+   ```
 
 4.. 리스트의 키에 대해 알아보기
 
-   - 리스트에서는 키는 "리스트에서 아이템을 구별하기 위한 고유한 문자열"
+- 리스트에서는 키는 "리스트에서 아이템을 구별하기 위한 고유한 문자열"
 
-   - 이 키는 리스트에서 어떤 아이템이 변경, 추가 또는 제거되었는지 구분하기 위해 사용
+- 이 키는 리스트에서 어떤 아이템이 변경, 추가 또는 제거되었는지 구분하기 위해 사용
 
-   - 키는 같은 리스트에 있는 엘리먼트 사이에서만 고유한 값이면 된다.
+- 키는 같은 리스트에 있는 엘리먼트 사이에서만 고유한 값이면 된다.
 
 5. 출석부 출력
 
@@ -161,6 +227,7 @@
 - React에서는 if 문, &&, ? : 연산자 같은 JavaScript 문법을 사용해 조건부로 JSX를 렌더링할 수 있음.
 
 - 아래는 상품의 포장 여부를 표시하는 여러 개의 Item을 렌더링하는 PackingList 컴포넌트
+
 ```jsx
 function Item({ name, isPacked }) {
   return <li className="item">{name}</li>;
