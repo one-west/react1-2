@@ -1,5 +1,143 @@
 # 정한서 201930129
 
+## 6월 5일 강의
+
+### Shared State
+
+- Shared state는 state의 공유를 의미한다.
+
+- 같은 부모 컴포넌트의 state를 자식 컴포넌트가 공유해서 사용하는 것이다.
+
+- 다음 그림은 부모 컴포넌트가 섭씨 온도의 state를 갖고 있고, 이것을 컴포넌트 C와 컴포넌트가 공유해서 서용하는 것을 보여줌
+
+  ![Shared State](https://ko.react.dev/_next/image?url=%2Fimages%2Fdocs%2Fdiagrams%2Fsharing_state_child.png&w=1080&q=75)
+
+### Shared State 적용하기
+
+```jsx
+export default function TemperatureInput(props) {
+  const handleChange = (event) => {
+    props.onTemperatureChange(event.target.value);
+  };
+  const scaleNames = {
+    c: "섭씨",
+    f: "화씨",
+  };
+  return (
+    <fieldset>
+      <legend>온도를 입력해주세요(단위:{scaleNames[props.scale]}):</legend>
+      <input value={props.temperature} onChange={handleChange} />
+    </fieldset>
+  );
+}
+```
+
+```jsx
+import { useState } from "react";
+import TemperatureInput from "./TemperatureInput";
+
+function BoilingVerdict(props) {
+  if (props.celsius >= 100) {
+    return <p>물이 끓습니다.</p>;
+  }
+  return <p>물이 끓지 않습니다.</p>;
+}
+
+function toCelsius(fahrenheit) {
+  return ((fahrenheit - 32) * 5) / 9;
+}
+
+function toFahrenheit(celsius) {
+  return (celsius * 9) / 5 + 32;
+}
+
+function tryConvert(temperature, convert) {
+  const input = parseFloat(temperature);
+  if (Number.isNaN(input)) {
+    return "";
+  }
+  const output = convert(input);
+  const rounded = Math.round(output * 1000) / 1000;
+  return rounded.toString();
+}
+
+export default function Calculator() {
+  const [temperature, setTemperature] = useState("");
+  const [scale, setScale] = useState("c");
+
+  const handleCelsiusChange = (temperature) => {
+    setTemperature(temperature);
+    setScale("c");
+  };
+
+  const handleFahrenheitChange = (temperature) => {
+    setTemperature(temperature);
+    setScale("f");
+  };
+
+  const celsius =
+    scale === "f" ? tryConvert(temperature, toCelsius) : temperature;
+  const fahrenheit =
+    scale === "c" ? tryConvert(temperature, toFahrenheit) : temperature;
+
+  return (
+    <div>
+      <TemperatureInput
+        scale="c"
+        temperature={celsius}
+        onTemperatureChange={handleCelsiusChange}
+      />
+      <TemperatureInput
+        scale="f"
+        temperature={fahrenheit}
+        onTemperatureChange={handleFahrenheitChange}
+      />
+      <BoilingVerdict celsius={parseFloat(celsius)} />
+    </div>
+  );
+}
+```
+
+### 합성에 대해 알아보기
+
+- 합성(Composition)은 여러 개의 컴포넌트를 합쳐서 새로운 컴포넌트를 만드는 것이다.
+
+- 조합 방법에 따라 합성의 사용 기법은 다음과 같이 나눈 수 있습니다.
+
+  #### Containment(담다. 포함하다. 격리하다.)
+
+  - 특정 컴포넌트가 하위 컴포넌트를 포함하는 형태의 합성방법이다.
+
+  - 컴포넌트에 따라서는 어떤 자식 엘리먼트가 들어올 지 미리 예상할 수 없는 경우가 있다.
+
+  - 범용적인 박스 역할을 하는 Sidebar 혹은 Dialog와 같은 컴포넌트에 특히 자주 볼 수 있습니다.
+
+  - 이런 컴포넌트에서는 children prop을 사용하여 자식 엘리먼트를 출력에 그대로 전달하는 것이 좋다.
+
+  - 다음과 같이 props.children을 사용하면 해당 컴포넌트의 하위 컴포넌트가 모두 children으로 들어오게 된다.
+
+    ```jsx
+    export default function FancyBorder(props) {
+      return (
+        <div className={`FancyBorder` + props.color}>{props.children}</div>
+      );
+    }
+    ```
+
+  - 만일 여러 개의 children 집합이 필요할 경우는 별도로 props를 정의해서 각각 원하는 컴포넌트를 넣어준다.
+
+  #### [2]. Specialization (특수화, 전문화)
+
+  - 웰컴다이얼로그는 다이얼로그의 특별한 케이스입니다.
+
+  - 범용적인 개념을 구별이 되게 구체화하는 것을 특수화라고 합니다.
+
+  - 객체지향 언어에서는 상속을 사용하여 특수화를 구현합니다.
+
+  - 리액트에서는 합성을 사용하여 특수화를 구현합니다.
+
+### React.createElement()에 관하여
+
 ## 5월 29일 강의
 
 ### ~ 22일 강의의 연장선
@@ -46,7 +184,9 @@
          <label>
            이름 :{" "}
            <input
-             type="text" value={name} onChange={handleChangeName}
+             type="text"
+             value={name}
+             onChange={handleChangeName}
              placeholder="이름을 입력해 주세요."
            />
          </label>
