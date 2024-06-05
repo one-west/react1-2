@@ -104,7 +104,7 @@ export default function Calculator() {
 
 - 조합 방법에 따라 합성의 사용 기법은 다음과 같이 나눈 수 있습니다.
 
-  #### Containment(담다. 포함하다. 격리하다.)
+  #### [1]. Containment(담다. 포함하다. 격리하다.)
 
   - 특정 컴포넌트가 하위 컴포넌트를 포함하는 형태의 합성방법이다.
 
