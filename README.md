@@ -380,9 +380,6 @@ export default function Calculator() {
   }
   ```
 
-  ### React.createElement()에 관하여
-
-  - 내용추가
 
 ## 5월 29일 강의
 
